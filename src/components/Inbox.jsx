@@ -1,8 +1,8 @@
 import {useContext} from 'react'
 import { StatusContext } from '../Context'
 import { Link } from 'react-router-dom'
-import { Paper, Table, TableContainer, TableHead, TableRow, TableCell, styled, tableCellClasses, TableBody, Container, Typography } from '@mui/material'
-import { ArrowForward } from '@mui/icons-material'
+import { Paper, Table, TableContainer, Stack, TableHead, TableRow, TableCell, styled, tableCellClasses, TableBody, Container, Typography } from '@mui/material'
+import { ArrowForward, Error, Help, Loop } from '@mui/icons-material'
 
 const Inbox = () => {
     const StyledTableCell = styled(TableCell)(({theme}) => ({
@@ -39,8 +39,20 @@ const Inbox = () => {
                     </TableHead>
                     <TableBody>
                         {
-                            status.loading ? <StyledTableRow><StyledTableCell colSpan={3}>Loading...</StyledTableCell></StyledTableRow>
-                            :status.error ? <StyledTableRow><StyledTableCell colSpan={3}>An Error Ocurred</StyledTableCell></StyledTableRow>
+                            status.loading ? 
+                                <StyledTableRow><StyledTableCell colSpan={3}>
+                                    <Stack direction="row" spacing={1} alignItems="center">
+                                        <Loop/> 
+                                        <Typography color="black" fontWeight="bold"> Loading...</Typography>
+                                    </Stack>
+                                </StyledTableCell></StyledTableRow>
+                            :status.error ? 
+                                <StyledTableRow><StyledTableCell colSpan={3}>
+                                    <Stack direction="row" spacing={1} alignItems="center">
+                                        <Error color="error" /> 
+                                        <Typography color="red" fontWeight="bold"> An Error Ocurred</Typography>
+                                    </Stack>
+                                </StyledTableCell></StyledTableRow>
                             :status.data.length > 0 ? 
                             status.data.map((data, i) => (
                                 <StyledTableRow key={i}>
@@ -48,7 +60,13 @@ const Inbox = () => {
                                     <StyledTableCell align="left">{data.subject}</StyledTableCell>
                                     <StyledTableCell align="right"><Link to={`/message/${data.id}`}><ArrowForward color="primary"/></Link></StyledTableCell>
                                 </StyledTableRow>
-                            )):<StyledTableRow></StyledTableRow>
+                            )):
+                                <StyledTableRow><StyledTableCell colSpan={3}>
+                                    <Stack direction="row" spacing={1} alignItems="center">
+                                        <Help color="disabled"/>
+                                        <Typography color="gray" fontWeight="bold">No emails found</Typography>
+                                    </Stack>
+                                </StyledTableCell></StyledTableRow>
                         }
                     </TableBody>
                 </Table>
