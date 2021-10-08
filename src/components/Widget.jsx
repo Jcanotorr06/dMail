@@ -52,9 +52,9 @@ const Widget = () => {
     }
 
     return (
-        <Container>
+        <Container component="section">
             <Box display="flex" flexDirection="column" alignItems="center">
-                    <Box paddingX={6} paddingY={4} textAlign="center" border="1px dashed black" width={{xs:'90%', md:'75%', lg:'50%'}} marginTop={8}>
+                    <Box paddingX={6} paddingY={4} textAlign="center" border="1px dashed black" width={{xs:'90%', md:'75%', lg:'50%'}} marginTop={8} aria-label="email address widget">
                         <Typography fontFamily="monospace">Your disposable Email address: </Typography>
                         <Stack direction="row" spacing={1} justifyContent="center" alignItems="center" marginY={2}>
                             <Box>
@@ -63,16 +63,16 @@ const Widget = () => {
                                 </Typography>
                             </Box>
                             <Tooltip title="Copy to clipboard" placement="top" arrow>
-                                <Fab color="primary" onClick={() => handleCopy()}><FileCopy fontSize="small"/></Fab>
+                                <Fab color="primary" onClick={() => handleCopy()} aria-label="copy button"><FileCopy fontSize="small"/></Fab>
                             </Tooltip>
                             <Tooltip title="Generate new email" placement="top" arrow>
-                                <Fab color="secondary" onClick={() => handleRemove()}><Cached fontSize="small"/></Fab>
+                                <Fab color="secondary" onClick={() => handleRemove()} aria-label="new email button"><Cached fontSize="small"/></Fab>
                             </Tooltip>
                         </Stack>
                     </Box>
                 <Box padding={2} textAlign="center" width={{xs:'75%', md:'50%', lg:'40%'}}>
-                    <Typography variant="caption" fontFamily="monospace">
-                    Forget about spam, advertising mailings, hacking and attacking robots. Keep your real mailbox clean and secure. Temp Mail provides temporary, secure, anonymous, free, disposable email address.
+                    <Typography variant="caption" fontFamily="monospace" aria-label="description">
+                        Forget about spam, advertising mailings, hacking and attacking robots. Keep your real mailbox clean and secure. Temp Mail provides temporary, secure, anonymous, free, disposable email address.
                     </Typography>
                 </Box>
             </Box>
