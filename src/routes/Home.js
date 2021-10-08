@@ -1,12 +1,11 @@
-import {Widget, Buttons, Inbox, Password} from '../components'
+import {Widget, Inbox} from '../components'
 
 const Home = () => {
     return (
         <div>
-            <Widget/>
-            <hr/>
-            <Password/>
-            <Buttons/>
+            <div style={{backgroundColor: "pink"}}>
+                <Widget/>
+            </div>
             <Inbox/>
         </div>
     )
