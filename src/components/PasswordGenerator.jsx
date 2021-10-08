@@ -47,8 +47,17 @@ const PasswordGenerator = () => {
     }
 
     useEffect(() => {
-        generatePassword()
-    }, [])
+        const g = () => {
+            setPassword(generate({
+                length: lenght,
+                numbers: numbers,
+                symbols: symbols,
+                lowercase: lowercase,
+                uppercase: uppercase
+            }))
+        }
+        g()
+    }, [lenght, numbers, symbols, lowercase, uppercase])
 
     return (
         <Container maxWidth="md" component="section" aria-label="password generator">

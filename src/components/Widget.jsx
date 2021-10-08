@@ -41,7 +41,7 @@ const Widget = () => {
             }
         }, 10000)
         return() => clearInterval(interval)
-    }, [cookies.name, cookies.provider, setStatus])
+    }, [cookies, setStatus])
 
     const handleCopy = () => {
         navigator.clipboard.writeText(cookies.email)
