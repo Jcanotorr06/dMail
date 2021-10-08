@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react'
+import { useCookies } from 'react-cookie';
+import {StatusContext} from './Context'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {Home, Message} from './routes'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = () => {
+    const [cookies, setCookie, removeCookie] = useCookies(['email', 'name', 'provider'])
+    const [status, setStatus] = useState({data:[], error:false, loading:false})
+
+    return (
+        <StatusContext.Provider value={{status, setStatus, cookies, setCookie, removeCookie}}>
+            <Router>
+                <Switch>
+                    <Route path="/message/:id">
+                        <Message/>
+                    </Route>
+                    <Route path="/">
+                        <Home/>
+                    </Route>
+                </Switch>
+            </Router>
+        </StatusContext.Provider>
+    )
 }
 
-export default App;
+export default App
