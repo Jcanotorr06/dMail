@@ -3,7 +3,8 @@ import { useCookies } from 'react-cookie';
 import {StatusContext} from './Context'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {Home, Message, Password} from './routes'
-import { NavBar } from './components';
+import { NavBar, Footer } from './components';
+import { Stack } from '@mui/material';
 
 
 const App = () => {
@@ -13,18 +14,21 @@ const App = () => {
     return (
         <StatusContext.Provider value={{status, setStatus, cookies, setCookie, removeCookie}}>
             <Router>
-                <NavBar/>
-                <Switch>
-                    <Route path="/message/:id">
-                        <Message/>
-                    </Route>
-                    <Route path="/password">
-                        <Password/>
-                    </Route>
-                    <Route exact path="/">
-                        <Home/>
-                    </Route>
-                </Switch>
+                <Stack direction="column" alignItems="center" justifyContent="space-between" minHeight="100vh" width="100vw">
+                    <NavBar/>
+                    <Switch>
+                        <Route path="/message/:id">
+                            <Message/>
+                        </Route>
+                        <Route path="/password">
+                            <Password/>
+                        </Route>
+                        <Route exact path="/">
+                            <Home/>
+                        </Route>
+                    </Switch>
+                    <Footer/>
+                </Stack>
             </Router>
         </StatusContext.Provider>
     )
