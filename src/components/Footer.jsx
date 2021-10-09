@@ -8,7 +8,7 @@ const Footer = () => {
             <Container component="nav">
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
                     <Typography aria-label="credits">dMail - Designed and created by Joseph Cano</Typography>
-                    <IconButton aria-label="github repository" href="https://github.com/Jcanotorr06/dMail" target="_blank">
+                    <IconButton aria-label="github repository" href="https://github.com/Jcanotorr06/dMail" rel="noreferrer" target="_blank">
                         <GitHub/>
                     </IconButton>
                 </Stack>
